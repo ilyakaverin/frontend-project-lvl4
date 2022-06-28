@@ -1,0 +1,38 @@
+$inputBackground: #000000;
+$inputFontColor: #fff;
+
+h1 {
+    color: $inputFontColor
+}
+.authForm {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+    width: 20vw;
+    color: #A80000
+
+
+   
+}
+input {
+    padding: 10px;
+    outline: 0;
+    background-color: $inputBackground;
+    color: $inputFontColor;
+    border-radius: 5px;
+    border: 1px solid #cacaca;
+    ::placeholder {
+        color: $inputFontColor
+    }
+  
+}
+button {
+    background-color: #00A800;
+    border: none;
+    padding: 5px;
+    color: $inputFontColor
+}
+.authForm__errors {
+    display: flex;
+    flex-direction: column;
+}
