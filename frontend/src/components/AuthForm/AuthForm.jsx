@@ -1,25 +1,43 @@
 import style from './style.module.scss';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
+import { AuthContext } from '../../context/authContext';
+import { useNavigate } from 'react-router-dom';
  
- const SignupSchema = Yup.object().shape({
+ const SigninSchema = Yup.object().shape({
    password: Yup.string()
      .required('Required'),
    email: Yup.string().email('Invalid email').required('Required'),
  });
 
-const AuthForm = () => (
-  <div>
+const AuthForm = () => {
+
+  const { store, dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+
+
+  return (
+    <div>
     <h1>Dive into it</h1>
     <Formik
-      initialValues={{ email: '', password: '' }}
-      validationSchema={SignupSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
+      initialValues={{ email: 'kaverin1990@gmail.com', password: 'hi' }}
+      validationSchema={SigninSchema}
+      onSubmit={ (values, { setSubmitting }) => {
+        dispatch({type: 'startLoading'})
+          setTimeout(async () => {
+          setSubmitting(false)
+          try {
+            const response = await axios.post('/api/v1/login', { username: 'admin', password: 'admin' })
+            dispatch({type: 'authentication', payload: response.data})
+            navigate('/')
+          } catch(e) {
+            dispatch({type: 'error', payload: e.message})
+          }
+          
+          },1500)
       }}
     >
       {({
@@ -41,7 +59,7 @@ const AuthForm = () => (
             onBlur={handleBlur}
             value={values.email}
           />
-          <span>{errors.email && touched.email && errors.email}</span>
+          <span className={style.authForm__error}>{errors.email && touched.email && errors.email}</span>
           <input
             type="password"
             name="password"
@@ -50,14 +68,16 @@ const AuthForm = () => (
             onBlur={handleBlur}
             value={values.password}
           />
-         <span> {errors.password && touched.password && errors.password}</span>
+         <span className={style.authForm__error}> {errors.password && touched.password && errors.password}</span>
           <button type="submit" disabled={isSubmitting}>
-            Sign  in
+            {store.authentication.isLoading ? 'Loading' : 'Sign in'}
           </button>
+          <span>{store.authentication.errors}</span>
         </form>
       )}
     </Formik>
   </div>
-);
+  )
+}
 
 export default AuthForm;

@@ -1,0 +1,21 @@
+.chat {
+    animation: fade 1s ease;
+    font-family: 'IBM';
+    font-size: 2rem;
+}
+.chat__container {
+    border: 1px solid white;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    width: 50vw;
+    height: 30vw;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

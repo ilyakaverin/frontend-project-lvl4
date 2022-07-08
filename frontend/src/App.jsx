@@ -1,24 +1,50 @@
-import React from 'react';
+import React, { useEffect, useReducer } from 'react';
 import './App.css';
 import {
-  BrowserRouter as Router,
   Route,
   Routes,
-  Navigate
 } from "react-router-dom";
 import Login from './views/Login/Login';
-import NotFound from './views/NotFound/NotFound'
-
+import NotFound from './views/NotFound/NotFound';
+import Chat from './views/Chat/Chat';
+import RequireAuth from './components/ProtectedRoutes/RequireAuth';
+import './App.css';
+import { AuthContext } from './context/authContext';
+import { reducer } from './reducer';
+import ProtectedLogin from './components/ProtectedRoutes/ProtectedLogin';
 const App = () => {
+
+
+
+  const [store, dispatch] = useReducer(reducer, {
+    authentication: {
+      isLoading: false,
+      isAuthorized: false,
+      errors: [],
+    }
+  })
+  useEffect(() => {
+    dispatch({type: 'authorization'});
+   },[])
+
+  
+
   return (
-    <Router>
+    <AuthContext.Provider value={{store, dispatch}}>
          <Routes>
-            <Route path="/" element={<Navigate to="/login" />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="*" element={<NotFound />} />
+          <Route exact path="/" element={
+          <RequireAuth>
+            <Chat />
+          </RequireAuth>
+          } />
+          <Route path="/login" element={
+            <ProtectedLogin>
+                <Login />
+            </ProtectedLogin>
+           } />
+          <Route path="*" element={<NotFound />} />
         </Routes>
-    </Router>
-    
+    </AuthContext.Provider>
   )
 }
 

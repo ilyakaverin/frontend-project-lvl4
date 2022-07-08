@@ -9,10 +9,12 @@ h1 {
     flex-direction: column;
     gap: 0.5vw;
     width: 20vw;
-    color: #A80000
+    color: #A80000;
 
+}
+.authForm__error {
 
-   
+    animation: fade 0.5s ease;
 }
 input {
     padding: 10px;
@@ -20,7 +22,6 @@ input {
     background-color: $inputBackground;
     color: $inputFontColor;
     border-radius: 5px;
-    border: 1px solid #cacaca;
     ::placeholder {
         color: $inputFontColor
     }
@@ -29,10 +30,25 @@ input {
 button {
     background-color: #00A800;
     border: none;
-    padding: 5px;
-    color: $inputFontColor
+    padding: 10px;
+    color: $inputFontColor;
+    box-shadow: $inputBackground 5px 5px;
+    cursor: pointer;
+   
+}
+button:active {
+    transform: translateY(5px)
 }
 .authForm__errors {
     display: flex;
     flex-direction: column;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1
+    }
 }
