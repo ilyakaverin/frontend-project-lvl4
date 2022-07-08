@@ -1,0 +1,15 @@
+.chat__input {
+
+    grid-column: 2/3;
+    display: flex;
+    margin: 1rem;
+    justify-content: space-between;
+    align-items: center;
+
+    input {
+        width: 70%;
+    }
+    button {
+        width: 20%;
+    }
+}
