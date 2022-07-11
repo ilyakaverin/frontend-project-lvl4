@@ -14,13 +14,11 @@ import './assets/fonts/Mx437_IBM_BIOS-2x.ttf';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Router>
-      <ReduxProvider store={store}>
-        <App />
-      </ReduxProvider>
-    </Router>
-  </React.StrictMode>
+  <Router>
+    <ReduxProvider store={store}>
+      <App />
+    </ReduxProvider>
+</Router>
 );
 
 // If you want to start measuring performance in your app, pass a function

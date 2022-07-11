@@ -17,14 +17,22 @@ export const chatSlice = createSlice({
       fetchErrors: (state, action) => ({
           ...state,
           errors: action.payload
-      })
+      }),
+      updateMessagesState: (state, action) => ({
+          ...state,
+          data: {
+              ...state.data,
+              messages: [...state.data.messages, action.payload]
+          }
+      }),
  
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { fetchChatData,  fetchErrors  } = chatSlice.actions;
+export const { fetchChatData,  fetchErrors, updateMessagesState  } = chatSlice.actions;
 export const chatStore = state => state.chat;
+
 
 
 export const getChatData = () => async (dispatch) => {

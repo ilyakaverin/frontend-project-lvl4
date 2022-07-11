@@ -2,14 +2,20 @@
 
     grid-column: 2/3;
     display: flex;
-    margin: 1rem;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 
-    input {
-        width: 70%;
+    .chat__textinput {
+        width: 100%;
+        padding: 1rem
     }
     button {
-        width: 20%;
+        width: 10%;
+        position: absolute;
+        right: 1%;
     }
+}
+button:disabled {
+    opacity: 0.5;
 }

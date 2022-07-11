@@ -1,3 +1,23 @@
 .channels {
-    border: 1px solid purple
+    height: 100%;
+    fieldset {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        height: 100%;
+    
+        span {
+            text-align: center;
+            cursor: pointer;
+            width: 90%;
+            margin: 0 auto;
+            border-radius: 5px;
+            padding: 5px;
+            &:hover {
+                background-color: rgba(255,255,255, 0.3);
+            }
+    
+        }
+    
+    }
 }

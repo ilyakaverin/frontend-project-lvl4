@@ -1,3 +1,12 @@
+$message-panel-height: calc(100% - 10px);
+
 .messages {
     background-color: #00A8A8;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    height: $message-panel-height;
+    padding: 15px;
+    gap: 0.5vw;
+    height: 100%;
 }

@@ -1,21 +1,20 @@
 import React from 'react';
 import style from './style.module.scss';
-import { useSelector } from 'react-redux';
-import { chatStore } from '../../store/chatSlice';
+import cn from 'classnames';
 
 
-const ChannelBoard = () => {
-    const store = useSelector(chatStore);
+const ChannelBoard = ({channels}) => {
+
 
     return (
-        <section className={style.channels}>
-            <h3>Channels</h3>
-            <ul>
-                {
-                    store.data.channels.map((channel) => <li>{channel.name}</li>)
+        <div className={cn(style.channels, "tui-window")}>
+                <fieldset className="tui-fieldset">
+                    <legend>Channels</legend>
+                    {
+                channels && channels.map((channel) => <span key={channel.id}>{channel.name}</span>)
                 }
-            </ul>
-        </section>
+                </fieldset>
+        </div>
     )
 }
 export default ChannelBoard;

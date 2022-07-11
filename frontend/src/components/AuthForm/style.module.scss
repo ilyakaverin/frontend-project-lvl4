@@ -22,6 +22,7 @@ input {
     background-color: $inputBackground;
     color: $inputFontColor;
     border-radius: 5px;
+    width: 100%;
     ::placeholder {
         color: $inputFontColor
     }

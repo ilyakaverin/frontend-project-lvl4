@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/authContext';
 
 const RequireAuth = ({ children }) => {
     const { store } = useContext(AuthContext);
-    let location = useLocation()
+    let location = useLocation();
     if (!store.authentication.isAuthorized) return <Navigate to="/login" state={{ from: location }} replace />; 
   
     return children;
