@@ -1,0 +1,50 @@
+.channel {
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px;
+    &:hover {
+        background-color: rgba(255,255,255, 0.3);
+    }
+    &:hover ~ .channel__container_menu {
+ 
+        display: block;
+    }
+    
+}
+.channel__container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+}
+.channel__container_menu {
+    font-size: 0.8rem;
+    padding: 5px;
+    align-self: flex-end;
+    position: absolute;
+    right: 5%;
+    display: none;
+    &:hover {
+        display: block;
+        cursor: pointer;
+    }
+    span {
+        margin-right: 5px;
+    }
+}
+.hidden {
+    visibility: hidden;
+}
+.active {
+    background-color: rgba(255,255,255, 0.3);
+    animation: fade 0.5s ease;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

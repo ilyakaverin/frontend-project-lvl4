@@ -1,0 +1,46 @@
+.root {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.25s ease-in-out;
+    z-index: 100000;
+    overflow: auto;
+  }
+  
+  .root.open {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .modal {
+    width: 600px;
+    min-height: 390px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50% 0 0 -300px;
+    padding: 10px;
+    position: relative;
+    top: 30%;
+    left: 50%;
+    background: #fafafa;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    border-radius: 15px;
+    pre {
+      white-space: pre-wrap;
+    }
+    button:active {
+      transform: translateY(-5px);
+    }
+  }
+  
+  .root.open .modal {
+    margin-top: -100px;
+    opacity: 1;
+  }
