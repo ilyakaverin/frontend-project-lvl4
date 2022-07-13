@@ -12,6 +12,10 @@ import './App.css';
 import { AuthContext } from './context/authContext';
 import { reducer } from './reducer';
 import ProtectedLogin from './components/ProtectedRoutes/ProtectedLogin';
+import { updateMessagesState, updateChannelsState} from './store/chatSlice';
+import { useDispatch } from 'react-redux';
+import socket from './socket';
+
 const App = () => {
 
 
@@ -22,9 +26,16 @@ const App = () => {
       isAuthorized: false,
       errors: [],
     }
-  })
+  });
+  const reduxDispatch = useDispatch()
+  const updateMessages = (message) => { 
+    reduxDispatch(updateMessagesState(message))
+   };
+  const updateChannels = (channel) => { reduxDispatch(updateChannelsState(channel)) };
   useEffect(() => {
     dispatch({type: 'authorization'});
+    socket.on('newMessage', updateMessages);
+    socket.on('newChannel', updateChannels);
    },[])
 
   
